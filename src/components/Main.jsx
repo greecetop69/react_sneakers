@@ -78,10 +78,14 @@ function Main({ cartItems, setCartItems, setCartOpen, cartOpen, price }) {
                         onClose={() => setCartOpen(false)}
                         setCartItems={setCartItems}
                         cartItems={cartItems}
+<<<<<<< HEAD
                         onRemove={onRemoveItem}
                     />
                 }
 
+=======
+                        onRemove={onRemoveItem} />}
+>>>>>>> f8373667ee6790743d69b4527ecebfb169922b18
                 <Home
                     cartItems={cartItems}
                     items={items}
