@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'  
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Drawer from './Drawer/index'
 import Home from '../pages/Home'
@@ -6,12 +6,12 @@ import MainContext from '../context'
 
 
 
-function Main({cartItems, setCartItems, setCartOpen, cartOpen, price }) {
+function Main({ cartItems, setCartItems, setCartOpen, cartOpen, price }) {
     const [items, setItems] = useState([])
     const [favorites, setFavorites] = useState([])
     const [searchValue, setsearchValue] = useState('')
     const [isLoading, setIsLoading] = useState(true)
-    
+
 
 
 
@@ -29,11 +29,11 @@ function Main({cartItems, setCartItems, setCartOpen, cartOpen, price }) {
         fetchData()
     }, [])
 
-    const onAddToFavorite = async (obj) => { 
+    const onAddToFavorite = async (obj) => {
         try {
             if (favorites.find((favObj) => favObj.id === obj.id)) {
                 axios.delete(`https://6357d07b2712d01e14107851.mockapi.io/favorites/${obj.id}`)
-            }   
+            }
             else {
                 const { data } = await axios.post('https://6357d07b2712d01e14107851.mockapi.io/favorites', obj)
                 setFavorites((prev) => [...prev, data])
@@ -66,14 +66,20 @@ function Main({cartItems, setCartItems, setCartOpen, cartOpen, price }) {
     }
 
     const isItemAdded = (id) => {
-        return cartItems.some((obj) => Number(obj.parentId) === Number(id)) 
+        return cartItems.some((obj) => Number(obj.parentId) === Number(id))
     }
-    
+
     return (
         <MainContext.Provider value={{ items, cartItems, favorites, isItemAdded }}>
             <div className="wrapper clear">
-                {cartOpen && <Drawer price={price} items={cartItems} onClose={() => setCartOpen(false)} setCartItems={setCartItems} cartItems={cartItems}  onRemove={onRemoveItem} />}
-                
+                {cartOpen &&
+                    <Drawer
+                        price={price}
+                        items={cartItems}
+                        onClose={() => setCartOpen(false)}
+                        setCartItems={setCartItems}
+                        cartItems={cartItems}
+                        onRemove={onRemoveItem} />}
                 <Home
                     cartItems={cartItems}
                     items={items}
