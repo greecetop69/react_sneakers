@@ -43,7 +43,7 @@ function App() {
         <Header onClickCart={() => setCartOpen(true)} cartItems={cartItems} price={price} count={count}/>
         <Routes>
           <Route path="/" element={<Main setCartOpened={setCartOpened} cartOpen={cartOpen} setCartOpen={setCartOpen} cartItems={cartItems} setCartItems={setCartItems} price={price}/>} />
-          <Route path="/favorites" element={<Favorites setCartOpened={setCartOpened} cartOpen={cartOpen} setCartOpen={setCartOpen} />} />
+          <Route path="/favorites" element={<Favorites cartOpen={cartOpen} setCartOpen={setCartOpen} cartItems={cartItems} setCartItems={setCartItems} />} />
           <Route path="/orders" element={<Orders />} />
         </Routes>
       </div>

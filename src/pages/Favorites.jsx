@@ -4,12 +4,13 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import MainContext from '../context'
+import Drawer from '../components/Drawer'
 
 
 
-function Favorites() {
-  const state = useContext({ MainContext })
+function Favorites({cartItems, setCartItems, setCartOpen, cartOpen, price, onRemoveItem}) {
 
+console.log(cartOpen)
   const [favorites, setFavorites] = useState([])
   useEffect(() => {
     axios.get('https://6357d07b2712d01e14107851.mockapi.io/favorites').then(res => {
@@ -34,6 +35,17 @@ function Favorites() {
 
   return (
     <div className="content p-40">
+      {cartOpen &&
+        <Drawer
+          price={price}
+          items={cartItems}
+          onClose={() => setCartOpen(false)}
+          setCartItems={setCartItems}
+          cartItems={cartItems}
+          onRemove={onRemoveItem}
+        />
+      }
+      
       <div className="d-flex align-center justify-between mb-40">
         <h1 >Мои закладки</h1>
       </div>

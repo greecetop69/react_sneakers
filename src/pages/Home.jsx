@@ -11,7 +11,7 @@ function Home({ items, cartItems, searchValue, setsearchValue, onChangeSearchInp
         key={index}
         onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
-        added={cartItems.find((obj) => +obj.id === +item.id)}
+        added={cartItems.find((obj) => +obj?.id === +item?.id)}
         loading={isLoading}
         isItemAdded={isItemAdded}
         {...item}
